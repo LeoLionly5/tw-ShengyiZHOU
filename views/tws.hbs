@@ -1,7 +1,48 @@
 <h1>List of Twitters</h1>
 
-<ul>
-  {{#each tws}}
-    <li>{{{this.message}}}</li>
-  {{/each}}
-</ul>
+<div>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>message</th>
+          <th>operation</th>
+          <th>create time</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each tws}}
+        <tr>
+          <td>{{{this._id}}}</td>
+          <td>{{{this.message}}}</td>
+          <td>{{{ formatDate this.createdAt }}}</td>
+          <td>
+              <a href="/tws/delete/{{this._id}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+              <a href="/tws/delete/{{this._id}}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-columns">
+    {{#each tws}}
+      <div class="card">
+        <div class="tools">
+          <a href="/tws/delete/{{this._id}}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+          <a href="/tws/delete/{{this._id}}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{{this.message}}}</p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                {{{ formatDate this.createdAt }}}
+              </small>
+            </footer>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -8,9 +8,17 @@ const testMiddleware = require('../../middlewares/test');
 
 var tws = [];
 
-Router.get('/', testMiddleware, (req, res) => {
+//Router.get('/', testMiddleware, (req, res) => {
+Router.get('/', (req, res) => {
     //res.status(200).send('GET Tws');
-    res.status(200).json(tws);
+    //res.status(200).json(tws);
+    Tw.find((e, rest) => {
+        if (e) {
+            res.status(500).json({error: e});
+        } else {
+            res.status(200).json(rest);
+        }
+    })
 })
 
 Router.get('/:twId', (req, res) => {
