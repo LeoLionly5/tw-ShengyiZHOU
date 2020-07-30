@@ -82,4 +82,27 @@ Router.get('/edit/:twId/:twMessage', (req, res) =>{
         });
 });
 
+Router.post('/add/:twMessage', (req, res) =>{
+    if (req.params.twMessage && req.params.twMessage != "") {
+        const tw = new Tw({
+            _id: new mongoose.Types.ObjectId(),
+            message: req.params.twMessage
+        })
+
+        console.log(tw._id + tw.message);
+
+        tw.save()
+            .then(tw => {
+                res.redirect('/tws/success/Tw well added !');
+            })
+            .catch(err => {
+                error = err;
+                console.error(error);
+                console.log(tw._id + tw.message);
+            })
+    } else {
+        res.status(500).json({error: "Please put some values"});    
+    }
+});
+
 module.exports = Router;

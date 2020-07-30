@@ -1,5 +1,5 @@
 body {
-    background: blueviolet;
+    background: lightgrey;
 }
 
 h1.title {
@@ -23,4 +23,5 @@ h1.title {
     position: absolute;
     top: 0;
     right: 0;
+    padding-right: 3px;
 }
