@@ -51,10 +51,6 @@ Router.get('/delete/:twId', (req, res) => {
         .exec()
         .then(result => {
             res.redirect('/tws/success/Tw well deleted !');
-            // res.render('tws', {
-            //     tws: result,
-            //     error: error
-            // });
         })
         .catch(err => {
             error = err;
@@ -72,6 +68,18 @@ Router.get('/:type/:msg', (req, res) => {
         msg: req.params.msg
     }
     list(req, res, msg)
+});
+
+Router.get('/edit/:twId/:twMessage', (req, res) =>{
+
+    Tw.update({_id: req.params.twId},{message: req.params.twMessage})
+        .then(tw => {
+            res.redirect('/tws/success/Tw well updated !');
+        })
+        .catch(err => {
+            error = err;
+            console.error(error);
+        });
 });
 
 module.exports = Router;
